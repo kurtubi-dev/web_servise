@@ -30,9 +30,9 @@ class SsoFlowTest extends TestCase
         $response = $this->get('/login');
 
         $response->assertStatus(200);
-        $response->assertSee('Gerbang Utama SSO');
-        $response->assertSee('Masuk dengan SSO Google');
         $response->assertSee('POLITEKNIK');
+        $response->assertSee('Gerbang');
+        $response->assertSee('Akun Google');
     }
 
     /**
@@ -69,7 +69,7 @@ class SsoFlowTest extends TestCase
         // Akses Portal Utama (Butir 3)
         $portalResponse = $this->get('/portal');
         $portalResponse->assertStatus(200);
-        $portalResponse->assertSee('Selamat Datang, Dimas Pratama!');
+        $portalResponse->assertSee('Dimas Pratama');
         $portalResponse->assertSee('Portal Akademik');
         $portalResponse->assertSee('E-Learning');
         $portalResponse->assertSee('Perpustakaan Digital');
