@@ -17,28 +17,30 @@
                     <span class="text-slate-900 font-bold">E-Learning (LMS Kampus)</span>
                 </div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight mt-1">Learning Management System</h1>
-                <p class="text-xs text-slate-500">Mahasiswa: <strong>{{ $user->name }}</strong> ({{ $user->email }}) &bull; Sesi SSO Aktif</p>
+                <p class="text-xs text-slate-500">
+                    Mahasiswa: <strong class="text-slate-800">{{ $user->name }}</strong> ({{ $user->email }}) &bull; Sesi SSO Aktif
+                </p>
             </div>
 
             <!-- Seamless Cross-Service Navigation -->
             <div class="flex items-center space-x-2 text-xs">
                 <span class="text-slate-400 font-mono text-[11px] hidden sm:inline">Pindah Layanan (Tanpa Password):</span>
-                <a href="{{ route('services.akademik') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-graduation-cap text-indigo-600"></i> Akademik
+                <a href="{{ route('services.akademik') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
+                    <i class="fa-solid fa-graduation-cap text-indigo-700"></i> Akademik
                 </a>
-                <a href="{{ route('services.perpustakaan') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-book-bookmark text-amber-600"></i> Perpustakaan
+                <a href="{{ route('services.perpustakaan') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
+                    <i class="fa-solid fa-book-bookmark text-amber-700"></i> Perpustakaan
                 </a>
             </div>
         </div>
 
         <!-- SSO Verification Status Strip -->
-        <div class="p-3.5 rounded-lg bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="p-3.5 rounded-md bg-emerald-50/70 border border-emerald-200/90 text-xs text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                <i class="fa-solid fa-circle-check text-emerald-700"></i>
                 <span><strong>Bukti Pengujian SSO:</strong> Sesi LMS aktif otomatis tanpa meminta login ulang saat berpindah dari portal atau modul akademik.</span>
             </div>
-            <span class="font-mono text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold uppercase whitespace-nowrap">
+            <span class="font-mono text-[10px] bg-emerald-100 text-emerald-900 px-2 py-0.5 rounded font-bold uppercase whitespace-nowrap">
                 OIDC Session Valid
             </span>
         </div>
@@ -47,16 +49,16 @@
         <div class="space-y-4">
             <div class="flex items-center justify-between">
                 <h2 class="text-sm font-bold text-slate-900">Mata Kuliah Daring yang Sedang Berjalan</h2>
-                <span class="text-xs font-mono text-slate-500">6 Kelas Terdaftar</span>
+                <span class="text-xs font-mono text-slate-500">6 Kelas Terdaftar Aktif</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 @foreach($courses as $course)
-                <div class="bg-white rounded-xl border border-slate-200/90 p-5 shadow-xs flex flex-col justify-between hover:border-slate-400 transition-colors">
+                <div class="bg-white rounded-xl border border-slate-200/90 p-5 shadow-2xs flex flex-col justify-between hover:border-slate-400 transition-colors">
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <span class="font-mono text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">{{ $course['code'] }}</span>
-                            <span class="font-mono text-xs font-bold text-slate-900">{{ $course['progress'] }}%</span>
+                            <span class="font-mono text-xs font-bold text-slate-900">{{ $course['progress'] }}% Selesai</span>
                         </div>
 
                         <h3 class="text-base font-bold text-slate-900 leading-snug">{{ $course['title'] }}</h3>
@@ -64,22 +66,22 @@
 
                         <!-- Progress Bar -->
                         <div class="w-full bg-slate-100 rounded-full h-1.5 my-4">
-                            <div class="bg-slate-900 h-1.5 rounded-full" style="width: {{ $course['progress'] }}%"></div>
+                            <div class="bg-[#0f172a] h-1.5 rounded-full" style="width: {{ $course['progress'] }}%"></div>
                         </div>
 
-                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100 text-xs space-y-1.5">
-                            <div class="text-[10px] uppercase font-mono text-slate-400">Topik Terkini:</div>
-                            <div class="font-medium text-slate-800 text-xs">{{ $course['current_topic'] }}</div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100 text-xs space-y-1.5 font-mono">
+                            <div class="text-[10px] uppercase text-slate-400 font-sans">Topik Terkini:</div>
+                            <div class="font-sans font-medium text-slate-800 text-xs">{{ $course['current_topic'] }}</div>
                             <div class="pt-2 border-t border-slate-200/70 flex items-center justify-between text-[11px]">
-                                <span class="text-slate-500">Tenggat:</span>
-                                <span class="font-mono font-bold text-rose-600">{{ $course['deadline'] }}</span>
+                                <span class="text-slate-500 font-sans">Tenggat Tugas:</span>
+                                <span class="font-bold text-rose-600">{{ $course['deadline'] }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-5">
-                        <button type="button" class="w-full py-2 rounded-lg bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 font-semibold text-xs border border-slate-200 transition-colors">
-                            Buka Materi Kuliah
+                        <button type="button" class="w-full py-2.5 rounded-md bg-slate-100 hover:bg-[#0f172a] hover:text-white text-slate-700 font-semibold text-xs border border-slate-200 transition-colors">
+                            Buka Modul Perkuliahan
                         </button>
                     </div>
                 </div>

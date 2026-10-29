@@ -17,28 +17,30 @@
                     <span class="text-slate-900 font-bold">Perpustakaan Digital (DigiLib)</span>
                 </div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight mt-1">Perpustakaan Digital</h1>
-                <p class="text-xs text-slate-500">Anggota: <strong>{{ $user->name }}</strong> ({{ $user->email }}) &bull; Bebas Pustaka: <span class="text-emerald-700 font-semibold">Aktif</span></p>
+                <p class="text-xs text-slate-500">
+                    Anggota: <strong class="text-slate-800">{{ $user->name }}</strong> ({{ $user->email }}) &bull; Bebas Pustaka: <span class="text-emerald-700 font-semibold">Aktif</span>
+                </p>
             </div>
 
             <!-- Seamless Cross-Service Navigation -->
             <div class="flex items-center space-x-2 text-xs">
                 <span class="text-slate-400 font-mono text-[11px] hidden sm:inline">Pindah Layanan (Tanpa Password):</span>
-                <a href="{{ route('services.akademik') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-graduation-cap text-indigo-600"></i> Akademik
+                <a href="{{ route('services.akademik') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
+                    <i class="fa-solid fa-graduation-cap text-indigo-700"></i> Akademik
                 </a>
-                <a href="{{ route('services.elearning') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-laptop-code text-emerald-600"></i> E-Learning
+                <a href="{{ route('services.elearning') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
+                    <i class="fa-solid fa-laptop-code text-emerald-700"></i> E-Learning
                 </a>
             </div>
         </div>
 
         <!-- SSO Verification Status Strip -->
-        <div class="p-3.5 rounded-lg bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="p-3.5 rounded-md bg-amber-50/70 border border-amber-200/90 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-circle-check text-amber-600"></i>
+                <i class="fa-solid fa-circle-check text-amber-700"></i>
                 <span><strong>Bukti Pengujian SSO:</strong> Layanan Perpustakaan Digital memvalidasi keanggotaan secara otomatis dari sesi SSO terpusat.</span>
             </div>
-            <span class="font-mono text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold uppercase whitespace-nowrap">
+            <span class="font-mono text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold uppercase whitespace-nowrap">
                 OIDC Session Valid
             </span>
         </div>
@@ -47,7 +49,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
             <!-- Pinjaman Aktif -->
-            <div class="lg:col-span-6 bg-white rounded-xl border border-slate-200/90 p-5 shadow-xs space-y-4">
+            <div class="lg:col-span-6 bg-white rounded-xl border border-slate-200/90 p-5 shadow-2xs space-y-4">
                 <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                     <h2 class="text-sm font-bold text-slate-900">Buku yang Sedang Dipinjam</h2>
                     <span class="text-[11px] font-mono text-slate-500">2 Koleksi Aktif</span>
@@ -63,7 +65,7 @@
                             <div class="font-bold text-slate-900 text-sm mt-1">{{ $item['judul'] }}</div>
                             <div class="text-[11px] text-slate-500">{{ $item['penulis'] }}</div>
                             <div class="text-[10px] font-mono text-slate-500 pt-1">
-                                Pinjam: {{ $item['tgl_pinjam'] }} &bull; Batas: <span class="font-semibold text-rose-600">{{ $item['tgl_kembali'] }}</span>
+                                Tanggal Pinjam: {{ $item['tgl_pinjam'] }} &bull; Batas: <span class="font-semibold text-rose-600">{{ $item['tgl_kembali'] }}</span>
                             </div>
                         </div>
                         <div class="sm:text-right">
@@ -77,7 +79,7 @@
             </div>
 
             <!-- Koleksi Katalog Terpopuler -->
-            <div class="lg:col-span-6 bg-white rounded-xl border border-slate-200/90 p-5 shadow-xs space-y-4">
+            <div class="lg:col-span-6 bg-white rounded-xl border border-slate-200/90 p-5 shadow-2xs space-y-4">
                 <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                     <h2 class="text-sm font-bold text-slate-900">Koleksi Buku Referensi Terpopuler</h2>
                     <span class="text-[11px] font-mono text-slate-500">Katalog Pustaka</span>
