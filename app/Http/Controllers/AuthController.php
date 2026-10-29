@@ -41,7 +41,8 @@ class AuthController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            // Gunakan stateless() agar kebal terhadap issue cross-domain session/cookie di localhost
+            $googleUser = Socialite::driver('google')->stateless()->user();
 
             $user = User::updateOrCreate(
                 ['email' => $googleUser->getEmail()],
@@ -55,8 +56,13 @@ class AuthController extends Controller
             Auth::login($user, true);
 
             return redirect()->route('portal')->with('success', "Selamat datang, {$user->name}! Autentikasi SSO Google berhasil.");
-        } catch (\Exception $e) {
-            return redirect()->route('login')->with('error', 'Gagal melakukan autentikasi SSO dengan Google: ' . $e->getMessage());
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Google SSO Callback Error: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
+
+            $message = $e->getMessage() ?: 'Sesi autentikasi kadaluarsa atau state tidak valid. Silakan coba login kembali.';
+            return redirect()->route('login')->with('error', 'Gagal melakukan autentikasi SSO dengan Google: ' . $message);
         }
     }
 
