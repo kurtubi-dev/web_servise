@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Portal Layanan Terpadu') &mdash; Politeknik SSO</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,7 +31,6 @@
         }
     </script>
     
-    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,38 +46,14 @@
         }
     </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col font-sans selection:bg-slate-900 selection:text-white">
 
-    <!-- Institutional Status Strip (Federated Security Context) -->
-    @auth
-    <div class="bg-[#0b1220] text-slate-300 text-[11px] border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono text-[10px] font-semibold tracking-wider">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    SSO ACTIVE
-                </span>
-                <span class="text-slate-600 hidden sm:inline">&bull;</span>
-                <span class="text-slate-400 hidden sm:inline">
-                    Identity Provider: <strong class="text-slate-200 font-medium">Google Accounts (OpenID Connect)</strong>
-                </span>
-            </div>
-            <div class="flex items-center space-x-4 font-mono text-[11px] text-slate-400">
-                <span class="hidden md:inline text-slate-500">Security Scope: <span class="text-slate-300">akademik &bull; elearning &bull; perpus</span></span>
-                <span class="text-slate-600 hidden md:inline">|</span>
-                <span class="bg-slate-900 px-2 py-0.5 rounded border border-slate-800 text-slate-300">
-                    UID: {{ substr(Auth::user()->google_id ?? 'SSO-LOCAL', 0, 14) }}...
-                </span>
-            </div>
-        </div>
-    </div>
-    @endauth
+<body class="bg-[#f8fafc] text-slate-800 min-h-screen flex flex-col font-sans selection:bg-slate-900 selection:text-white">
 
     <!-- Main Navigation Bar -->
     <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 sticky top-0 z-40 transition-shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                
+
                 <!-- Brand & Official Campus Emblem -->
                 <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
                     <div class="w-9 h-9 rounded-md bg-[#0f172a] text-white flex items-center justify-center font-bold text-sm shadow-xs border border-slate-800 group-hover:bg-slate-800 transition-colors">
@@ -87,40 +61,19 @@
                     </div>
                     <div>
                         <div class="font-extrabold text-slate-900 tracking-tight text-sm uppercase flex items-center gap-2">
-                            POLITEKNIK <span class="font-mono text-[10px] font-normal text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">sso.hub</span>
+                            POLITEKNIK NEGERI SUBANG
                         </div>
-                        <p class="text-[11px] text-slate-500 font-medium leading-none mt-0.5">Layanan Otentikasi Terpusat Kampus</p>
                     </div>
                 </a>
 
                 @auth
-                <!-- Primary Navigation -->
-                <nav class="hidden md:flex items-center space-x-1">
-                    <a href="{{ route('portal') }}" 
-                       class="px-3.5 py-2 text-xs font-semibold rounded-md transition-colors {{ request()->routeIs('portal') ? 'text-slate-900 bg-slate-100/90 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
-                        <i class="fa-solid fa-table-cells-large mr-1.5 text-slate-400"></i> Portal Utama
-                    </a>
-                    <a href="{{ route('services.akademik') }}" 
-                       class="px-3.5 py-2 text-xs font-semibold rounded-md transition-colors {{ request()->routeIs('services.akademik') ? 'text-indigo-900 bg-indigo-50 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
-                        <i class="fa-solid fa-graduation-cap mr-1.5 text-indigo-700"></i> Akademik (SIAKAD)
-                    </a>
-                    <a href="{{ route('services.elearning') }}" 
-                       class="px-3.5 py-2 text-xs font-semibold rounded-md transition-colors {{ request()->routeIs('services.elearning') ? 'text-emerald-900 bg-emerald-50 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
-                        <i class="fa-solid fa-laptop-code mr-1.5 text-emerald-700"></i> E-Learning
-                    </a>
-                    <a href="{{ route('services.perpustakaan') }}" 
-                       class="px-3.5 py-2 text-xs font-semibold rounded-md transition-colors {{ request()->routeIs('services.perpustakaan') ? 'text-amber-900 bg-amber-50 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50' }}">
-                        <i class="fa-solid fa-book-bookmark mr-1.5 text-amber-700"></i> Perpustakaan
-                    </a>
-                </nav>
-
                 <!-- User Profile & Single Sign-Out -->
                 <div class="flex items-center space-x-3">
                     <div class="flex items-center space-x-2.5 pl-3 border-l border-slate-200">
-                        <img src="{{ Auth::user()->avatar ?: 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->name).'&background=0f172a&color=fff&bold=true' }}" 
-                             alt="{{ Auth::user()->name }}"
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0f172a&color=fff&bold=true';" 
-                             class="w-8 h-8 rounded-full border border-slate-300 object-cover bg-slate-100 flex-shrink-0">
+                        <img src="{{ Auth::user()->avatar ?: 'https://ui-avatars.com/api/?name='.urlencode(Auth::user()->name).'&background=0f172a&color=fff&bold=true' }}"
+                            alt="{{ Auth::user()->name }}"
+                            onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=0f172a&color=fff&bold=true';"
+                            class="w-8 h-8 rounded-full border border-slate-300 object-cover bg-slate-100 flex-shrink-0">
                         <div class="hidden sm:block text-left">
                             <div class="text-xs font-bold text-slate-900 leading-tight truncate max-w-[150px]">
                                 {{ Auth::user()->name }}
@@ -134,10 +87,10 @@
                     <!-- Single Sign-Out Action -->
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
-                        <button type="submit" 
-                                onclick="return confirm('Single Sign-Out: Anda akan keluar dari seluruh layanan kampus yang terhubung.')" 
-                                class="inline-flex items-center px-2.5 py-1.5 text-xs font-semibold rounded-md text-slate-700 hover:text-rose-700 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-colors"
-                                title="Single Sign-Out dari seluruh layanan">
+                        <button type="submit"
+                            onclick="return confirm('Single Sign-Out: Anda akan keluar dari seluruh layanan kampus yang terhubung.')"
+                            class="inline-flex items-center px-2.5 py-1.5 text-xs font-semibold rounded-md text-slate-700 hover:text-rose-700 bg-slate-100 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-colors"
+                            title="Single Sign-Out dari seluruh layanan">
                             <i class="fa-solid fa-arrow-right-from-bracket sm:mr-1.5 text-xs"></i>
                             <span class="hidden sm:inline">Logout SSO</span>
                         </button>
@@ -220,19 +173,11 @@
         @yield('content')
     </main>
 
-    <!-- Academic Footer -->
+    <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 mt-16 py-6 text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-shield-halved text-slate-400"></i>
-                <span class="font-medium">Politeknik Enterprise Single Sign-On (SSO) &copy; {{ date('Y') }}</span>
-            </div>
-            <div class="font-mono text-[11px] text-slate-400 flex items-center space-x-3">
-                <span>OAuth 2.0 / OpenID Connect</span>
-                <span>&bull;</span>
-                <span>Laravel Socialite IdP</span>
-                <span>&bull;</span>
-                <span>Audit Level: Impeccable</span>
+                <span class="font-medium">Politeknik Negeri Subang &copy; {{ date('Y') }}</span>
             </div>
         </div>
     </footer>

@@ -6,7 +6,7 @@
 <div class="py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
-        <!-- Header & Breadcrumb with Cross-Service Switcher -->
+        <!-- Header & Breadcrumb -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
             <div>
                 <div class="flex items-center space-x-2 text-xs text-slate-500 font-mono">
@@ -14,23 +14,9 @@
                         <i class="fa-solid fa-arrow-left text-[10px]"></i> Portal Utama
                     </a>
                     <span>/</span>
-                    <span class="text-slate-900 font-bold">E-Learning (LMS Kampus)</span>
+                    <span class="text-slate-900 font-bold">E-Learning</span>
                 </div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight mt-1">Learning Management System</h1>
-                <p class="text-xs text-slate-500">
-                    Mahasiswa: <strong class="text-slate-800">{{ $user->name }}</strong> ({{ $user->email }}) &bull; Sesi SSO Aktif
-                </p>
-            </div>
-
-            <!-- Seamless Cross-Service Navigation -->
-            <div class="flex items-center space-x-2 text-xs">
-                <span class="text-slate-400 font-mono text-[11px] hidden sm:inline">Pindah Layanan (Tanpa Password):</span>
-                <a href="{{ route('services.akademik') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
-                    <i class="fa-solid fa-graduation-cap text-indigo-700"></i> Akademik
-                </a>
-                <a href="{{ route('services.perpustakaan') }}" class="px-3 py-1.5 rounded-md bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-300 transition-colors flex items-center gap-1.5 shadow-2xs">
-                    <i class="fa-solid fa-book-bookmark text-amber-700"></i> Perpustakaan
-                </a>
             </div>
         </div>
 
